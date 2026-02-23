@@ -34,10 +34,10 @@ export default function Impact() {
         {/* Top KPIs */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {[
-            { label: "Total Complaints Logged", value: totalComplaints.toLocaleString(), icon: <Users />, color: "text-blue-700", bg: "bg-blue-50" },
-            { label: "Resolved Successfully", value: resolvedCases.toLocaleString(), icon: <CheckCircle2 />, color: "text-emerald-700", bg: "bg-emerald-50" },
-            { label: "Resolution Rate", value: `${resolutionRate}%`, icon: <Activity />, color: "text-indigo-700", bg: "bg-indigo-50" },
-            { label: "High Risk Flags", value: "1,240", icon: <AlertTriangle />, color: "text-amber-700", bg: "bg-amber-50" }
+            { label: t("impact.stats.total"), value: totalComplaints.toLocaleString(), icon: <Users />, color: "text-blue-700", bg: "bg-blue-50" },
+            { label: t("impact.stats.resolved"), value: resolvedCases.toLocaleString(), icon: <CheckCircle2 />, color: "text-emerald-700", bg: "bg-emerald-50" },
+            { label: t("impact.stats.rate"), value: `${resolutionRate}%`, icon: <Activity />, color: "text-indigo-700", bg: "bg-indigo-50" },
+            { label: t("impact.stats.risk"), value: "1,240", icon: <AlertTriangle />, color: "text-amber-700", bg: "bg-amber-50" }
           ].map((kpi, i) => (
             <motion.div 
               key={i}

@@ -9,43 +9,43 @@ export default function Awareness() {
     {
       id: 1,
       icon: <Shield className="h-8 w-8 text-primary" />,
-      title: "Right to Safety",
-      description: "Protection against the marketing of goods and services which are hazardous to life and property.",
+      title: t("rights.right1.title"),
+      description: t("rights.right1.desc"),
       case: "Example: A pressure cooker explodes due to a manufacturing defect. The consumer can claim damages."
     },
     {
       id: 2,
       icon: <Eye className="h-8 w-8 text-primary" />,
-      title: "Right to Information",
-      description: "Right to be informed about quality, quantity, potency, purity, standard, and price of goods.",
+      title: t("rights.right2.title"),
+      description: t("rights.right2.desc"),
       case: "Example: A food package missing manufacturing date or ingredients list violates this right."
     },
     {
       id: 3,
       icon: <HandHeart className="h-8 w-8 text-primary" />,
-      title: "Right to Choose",
-      description: "Right to be assured, wherever possible, access to a variety of goods and services at competitive prices.",
+      title: t("rights.right3.title"),
+      description: t("rights.right3.desc"),
       case: "Example: A gas agency forcing you to buy a stove exclusively from them to get a connection."
     },
     {
       id: 4,
       icon: <MessageSquare className="h-8 w-8 text-primary" />,
-      title: "Right to be Heard",
-      description: "Right to be heard and assured that consumers' interests will receive due consideration at appropriate forums.",
+      title: t("rights.right4.title"),
+      description: t("rights.right4.desc"),
       case: "Example: A company ignores your customer service emails regarding a faulty product."
     },
     {
       id: 5,
       icon: <Scale className="h-8 w-8 text-primary" />,
-      title: "Right to Seek Redressal",
-      description: "Right to seek redressal against unfair trade practices or unscrupulous exploitation of consumers.",
+      title: t("rights.right5.title"),
+      description: t("rights.right5.desc"),
       case: "Example: You bought a defective laptop and the company refuses to honor the valid warranty."
     },
     {
       id: 6,
       icon: <BookOpen className="h-8 w-8 text-primary" />,
-      title: "Right to Consumer Education",
-      description: "To acquire knowledge and skill to be an informed consumer throughout life.",
+      title: t("rights.right6.title"),
+      description: t("rights.right6.desc"),
       case: "Example: Government initiatives and NGOs conducting camps to educate rural consumers."
     }
   ];

@@ -10,7 +10,7 @@
     --font-display: 'Outfit', sans-serif;
 
     /* Justice & Trust Theme - Professional Deep Blues & Clean Accents */
-    --background: 210 40% 99%;
+    --background: 210 40% 98%;
     --foreground: 222 47% 11%;
     
     --card: 0 0% 100%;
@@ -19,28 +19,28 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
     
-    /* Primary: Trust Deep Blue */
-    --primary: 221 70% 35%;
+    /* Primary: Deep Justice Blue */
+    --primary: 221 83% 40%;
     --primary-foreground: 210 40% 98%;
     
-    /* Secondary: Professional Slate */
-    --secondary: 215 25% 27%;
+    /* Secondary: Professional Slate Blue */
+    --secondary: 221 39% 11%;
     --secondary-foreground: 210 40% 98%;
     
     /* Muted: Soft Backgrounds */
-    --muted: 210 40% 96%;
+    --muted: 210 40% 95%;
     --muted-foreground: 215 16% 47%;
     
-    /* Accent: Integrity Gold/Saffron */
-    --accent: 38 92% 50%; 
+    /* Accent: Integrity Saffron/Gold - Stronger Contrast */
+    --accent: 31 92% 55%; 
     --accent-foreground: 210 40% 98%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 221 83% 40%;
+    --border: 214 32% 90%;
+    --input: 214 32% 90%;
+    --ring: 221 83% 45%;
 
     --radius: 0.75rem;
   }

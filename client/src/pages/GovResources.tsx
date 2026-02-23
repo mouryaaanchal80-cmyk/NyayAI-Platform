@@ -29,8 +29,8 @@ export default function GovResources() {
                 <Phone className="h-10 w-10" />
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-foreground">National Consumer Helpline</h2>
-                <p className="text-muted-foreground text-lg mt-2">Toll-Free Grievance Registration</p>
+                <h2 className="text-3xl font-bold text-foreground">{t("gov.portal2.name")}</h2>
+                <p className="text-muted-foreground text-lg mt-2">{t("gov.portal2.desc")}</p>
               </div>
             </div>
             
@@ -67,9 +67,9 @@ export default function GovResources() {
                 <ShieldCheck className="h-10 w-10" />
               </div>
               <div className="flex-1">
-                <h2 className="text-2xl font-bold text-foreground mb-3">e-Daakhil Portal</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-3">{t("gov.portal1.name")}</h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  A hassle-free, speedy, and inexpensive facility to conveniently approach Consumer Commissions online without needing to travel to the commission office.
+                  {t("gov.portal1.desc")}
                 </p>
                 
                 <h4 className="font-bold text-foreground mb-4">Steps to File online:</h4>
