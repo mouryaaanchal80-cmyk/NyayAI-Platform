@@ -95,16 +95,16 @@ export default function Impact() {
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
-                    data={stats.categories || []}
+                    data={stats.categoryInsights || []}
                     cx="50%"
                     cy="50%"
                     innerRadius={80}
                     outerRadius={120}
                     paddingAngle={5}
-                    dataKey="value"
+                    dataKey="count"
                     nameKey="category"
                   >
-                    {(stats.categories || []).map((entry, index) => (
+                    {(stats.categoryInsights || []).map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
@@ -117,10 +117,10 @@ export default function Impact() {
             
             {/* Custom Legend */}
             <div className="flex flex-wrap justify-center gap-4 mt-4">
-              {(stats.categories || []).map((entry, idx) => (
+              {(stats.categoryInsights || []).map((entry, idx) => (
                 <div key={idx} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{backgroundColor: COLORS[idx % COLORS.length]}}></div>
-                  <span className="text-sm font-medium text-muted-foreground">{entry.category} ({entry.value}%)</span>
+                  <span className="text-sm font-medium text-muted-foreground">{entry.category} ({entry.count})</span>
                 </div>
               ))}
             </div>
