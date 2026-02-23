@@ -1,0 +1,121 @@
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+
+type Language = 'en' | 'hi';
+
+interface Translations {
+  [key: string]: string;
+}
+
+const en: Translations = {
+  "nav.home": "Home",
+  "nav.fileComplaint": "File Complaint",
+  "nav.awareness": "Know Your Rights",
+  "nav.impact": "Impact Dashboard",
+  "nav.gov": "Gov Resources",
+  
+  "hero.title": "Smart Consumer Justice Platform",
+  "hero.subtitle": "Report unfair trade practices, understand your rights, and file complaints easily. Accessible for all citizens.",
+  "hero.cta": "File a Complaint Now",
+  
+  "form.title": "Report an Issue",
+  "form.desc": "Describe your issue below or use the voice input feature.",
+  "form.complaint": "Complaint Description",
+  "form.city": "City/District",
+  "form.category": "Product/Service Category",
+  "form.voice": "Voice Input",
+  "form.recording": "Recording...",
+  "form.analyze": "Analyze Complaint",
+  "form.analyzing": "Analyzing...",
+  
+  "results.title": "Analysis Results",
+  "results.issueType": "Identified Issue",
+  "results.emotion": "Emotional Tone",
+  "results.rights": "Consumer Rights Involved",
+  "results.action": "Suggested Action",
+  "results.probability": "Success Probability",
+  "results.letter": "Auto-Generated Legal Letter",
+  "results.copy": "Copy Text",
+  "results.download": "Download PDF",
+  "results.share": "Share on WhatsApp",
+  
+  "rights.title": "Know Your Consumer Rights",
+  "rights.subtitle": "Under the Consumer Protection Act, you are guaranteed these 6 fundamental rights.",
+  
+  "impact.title": "National Impact Dashboard",
+  "impact.subtitle": "Live analytics of consumer grievances across the country.",
+  
+  "gov.title": "Government Resources & Portals",
+  "gov.subtitle": "Official channels to seek redressal and support.",
+};
+
+const hi: Translations = {
+  "nav.home": "होम",
+  "nav.fileComplaint": "शिकायत दर्ज करें",
+  "nav.awareness": "अपने अधिकार जानें",
+  "nav.impact": "प्रभाव डैशबोर्ड",
+  "nav.gov": "सरकारी संसाधन",
+  
+  "hero.title": "स्मार्ट उपभोक्ता न्याय मंच",
+  "hero.subtitle": "अनुचित व्यापार प्रथाओं की रिपोर्ट करें, अपने अधिकारों को समझें, और आसानी से शिकायत दर्ज करें। सभी नागरिकों के लिए सुलभ।",
+  "hero.cta": "अभी शिकायत दर्ज करें",
+  
+  "form.title": "समस्या की रिपोर्ट करें",
+  "form.desc": "अपनी समस्या का वर्णन करें या वॉयस इनपुट सुविधा का उपयोग करें।",
+  "form.complaint": "शिकायत का विवरण",
+  "form.city": "शहर/जिला",
+  "form.category": "उत्पाद/सेवा श्रेणी",
+  "form.voice": "वॉयस इनपुट (आवाज़)",
+  "form.recording": "रिकॉर्ड हो रहा है...",
+  "form.analyze": "शिकायत का विश्लेषण करें",
+  "form.analyzing": "विश्लेषण हो रहा है...",
+  
+  "results.title": "विश्लेषण परिणाम",
+  "results.issueType": "पहचानी गई समस्या",
+  "results.emotion": "भावनात्मक स्वर",
+  "results.rights": "शामिल उपभोक्ता अधिकार",
+  "results.action": "सुझाए गए कदम",
+  "results.probability": "सफलता की संभावना",
+  "results.letter": "स्वचालित कानूनी पत्र",
+  "results.copy": "कॉपी करें",
+  "results.download": "पीडीएफ डाउनलोड करें",
+  "results.share": "व्हाट्सएप पर शेयर करें",
+  
+  "rights.title": "अपने उपभोक्ता अधिकारों को जानें",
+  "rights.subtitle": "उपभोक्ता संरक्षण अधिनियम के तहत, आपको इन 6 मौलिक अधिकारों की गारंटी दी गई है।",
+  
+  "impact.title": "राष्ट्रीय प्रभाव डैशबोर्ड",
+  "impact.subtitle": "देश भर में उपभोक्ता शिकायतों का लाइव विश्लेषण।",
+  
+  "gov.title": "सरकारी संसाधन और पोर्टल",
+  "gov.subtitle": "निवारण और सहायता प्राप्त करने के आधिकारिक चैनल।",
+};
+
+const dictionaries = { en, hi };
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguage] = useState<Language>('en');
+
+  const t = (key: string) => {
+    return dictionaries[language][key] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (!context) throw new Error("useLanguage must be used within LanguageProvider");
+  return context;
+}

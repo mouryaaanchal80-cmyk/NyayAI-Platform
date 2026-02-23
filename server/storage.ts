@@ -1,38 +1,49 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { complaints, type InsertComplaint, type Complaint } from "@shared/schema";
+import { desc, sql } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  createComplaint(complaint: InsertComplaint): Promise<Complaint>;
+  getDashboardStats(): Promise<any>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async createComplaint(complaint: InsertComplaint): Promise<Complaint> {
+    const [created] = await db.insert(complaints).values(complaint).returning();
+    return created;
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
-  }
+  async getDashboardStats(): Promise<any> {
+    const commonTypes = await db
+      .select({ type: complaints.type, count: sql<number>`count(*)` })
+      .from(complaints)
+      .where(sql`${complaints.type} IS NOT NULL`)
+      .groupBy(complaints.type)
+      .orderBy(desc(sql`count(*)`))
+      .limit(5);
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
+    const cityTrends = await db
+      .select({ city: complaints.city, count: sql<number>`count(*)` })
+      .from(complaints)
+      .where(sql`${complaints.city} IS NOT NULL`)
+      .groupBy(complaints.city)
+      .orderBy(desc(sql`count(*)`))
+      .limit(5);
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    const categoryInsights = await db
+      .select({ category: complaints.productCategory, count: sql<number>`count(*)` })
+      .from(complaints)
+      .where(sql`${complaints.productCategory} IS NOT NULL`)
+      .groupBy(complaints.productCategory)
+      .orderBy(desc(sql`count(*)`))
+      .limit(5);
+
+    return {
+      commonTypes: commonTypes.map(t => ({ type: t.type || 'Unknown', count: Number(t.count) })),
+      cityTrends: cityTrends.map(c => ({ city: c.city || 'Unknown', count: Number(c.count) })),
+      categoryInsights: categoryInsights.map(c => ({ category: c.category || 'Unknown', count: Number(c.count) })),
+    };
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
