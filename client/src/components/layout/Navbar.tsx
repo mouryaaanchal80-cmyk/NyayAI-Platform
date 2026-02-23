@@ -19,6 +19,7 @@ export function Navbar() {
     { href: "/awareness", label: t("nav.awareness") },
     { href: "/impact", label: t("nav.impact") },
     { href: "/gov-resources", label: t("nav.gov") },
+    { href: "/about", label: "About" },
   ];
 
   return (

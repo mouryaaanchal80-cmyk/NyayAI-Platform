@@ -14,6 +14,7 @@ import FileComplaint from "@/pages/FileComplaint";
 import Awareness from "@/pages/Awareness";
 import Impact from "@/pages/Impact";
 import GovResources from "@/pages/GovResources";
+import AboutMe from "@/pages/AboutMe";
 
 function Router() {
   return (
@@ -26,6 +27,7 @@ function Router() {
           <Route path="/awareness" component={Awareness} />
           <Route path="/impact" component={Impact} />
           <Route path="/gov-resources" component={GovResources} />
+          <Route path="/about" component={AboutMe} />
           <Route component={NotFound} />
         </Switch>
       </main>
@@ -33,7 +35,7 @@ function Router() {
       {/* Simple Footer */}
       <footer className="bg-slate-900 py-8 text-center text-slate-400 text-sm border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4">
-          <p>© {new Date().getFullYear()} NyayAI - Smart Consumer Justice Platform. Developed for National Competition.</p>
+          <p>© 2026 NyayAI | Built with dedication by Aanchal Mourya</p>
           <p className="mt-2 text-xs opacity-60">This platform uses AI to generate analysis and drafts. Not a substitute for official legal counsel.</p>
         </div>
       </footer>
