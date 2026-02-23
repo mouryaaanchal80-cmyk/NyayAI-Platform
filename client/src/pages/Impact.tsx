@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Loader2, Activity, Users, CheckCircle2, AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
 
-const COLORS = ['#1d4ed8', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe'];
+const COLORS = ['#1e3a8a', '#2563eb', '#3b82f6', '#60a5fa', '#93c5fd'];
 
 export default function Impact() {
   const { t } = useLanguage();
@@ -18,6 +18,10 @@ export default function Impact() {
     );
   }
 
+  const totalComplaints = stats.totalComplaints || 0;
+  const resolvedCases = stats.resolvedCases || 0;
+  const resolutionRate = totalComplaints > 0 ? Math.round((resolvedCases / totalComplaints) * 100) : 0;
+
   return (
     <div className="min-h-screen bg-background pt-16 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,17 +34,17 @@ export default function Impact() {
         {/* Top KPIs */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {[
-            { label: "Total Complaints Logged", value: stats.totalComplaints.toLocaleString(), icon: <Users />, color: "text-blue-600", bg: "bg-blue-100" },
-            { label: "Resolved Successfully", value: stats.resolvedCases.toLocaleString(), icon: <CheckCircle2 />, color: "text-green-600", bg: "bg-green-100" },
-            { label: "Resolution Rate", value: `${Math.round((stats.resolvedCases / stats.totalComplaints) * 100)}%`, icon: <Activity />, color: "text-indigo-600", bg: "bg-indigo-100" },
-            { label: "High Risk Flags", value: "1,240", icon: <AlertTriangle />, color: "text-red-600", bg: "bg-red-100" }
+            { label: "Total Complaints Logged", value: totalComplaints.toLocaleString(), icon: <Users />, color: "text-blue-700", bg: "bg-blue-50" },
+            { label: "Resolved Successfully", value: resolvedCases.toLocaleString(), icon: <CheckCircle2 />, color: "text-emerald-700", bg: "bg-emerald-50" },
+            { label: "Resolution Rate", value: `${resolutionRate}%`, icon: <Activity />, color: "text-indigo-700", bg: "bg-indigo-50" },
+            { label: "High Risk Flags", value: "1,240", icon: <AlertTriangle />, color: "text-amber-700", bg: "bg-amber-50" }
           ].map((kpi, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white p-6 rounded-2xl border border-border shadow-sm flex items-center gap-5"
+              className="bg-white p-6 rounded-2xl border border-border shadow-sm flex items-center gap-5 hover-elevate"
             >
               <div className={`p-4 rounded-xl ${kpi.bg} ${kpi.color}`}>
                 {kpi.icon}
