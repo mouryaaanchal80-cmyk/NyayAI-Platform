@@ -69,7 +69,7 @@ export default function Impact() {
             <h3 className="text-xl font-bold text-foreground mb-8">City-wise Complaints</h3>
             <div className="h-[350px]">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={stats.cityTrends}>
+                <BarChart data={stats.cityTrends || []}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
                   <XAxis dataKey="city" axisLine={false} tickLine={false} tick={{fill: '#6B7280'}} />
                   <YAxis axisLine={false} tickLine={false} tick={{fill: '#6B7280'}} />
@@ -95,7 +95,7 @@ export default function Impact() {
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
-                    data={stats.categories}
+                    data={stats.categories || []}
                     cx="50%"
                     cy="50%"
                     innerRadius={80}
@@ -104,7 +104,7 @@ export default function Impact() {
                     dataKey="value"
                     nameKey="category"
                   >
-                    {stats.categories.map((entry, index) => (
+                    {(stats.categories || []).map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
@@ -117,7 +117,7 @@ export default function Impact() {
             
             {/* Custom Legend */}
             <div className="flex flex-wrap justify-center gap-4 mt-4">
-              {stats.categories.map((entry, idx) => (
+              {(stats.categories || []).map((entry, idx) => (
                 <div key={idx} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{backgroundColor: COLORS[idx % COLORS.length]}}></div>
                   <span className="text-sm font-medium text-muted-foreground">{entry.category} ({entry.value}%)</span>
