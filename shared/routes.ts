@@ -36,9 +36,11 @@ export const api = {
       path: '/api/stats' as const,
       responses: {
         200: z.object({
-          commonTypes: z.array(z.object({ type: z.string(), count: z.number() })),
+          commonTypes: z.array(z.object({ name: z.string(), count: z.number() })),
           cityTrends: z.array(z.object({ city: z.string(), count: z.number() })),
           categoryInsights: z.array(z.object({ category: z.string(), count: z.number() })),
+          totalComplaints: z.number(),
+          resolvedCases: z.number(),
         }),
       },
     },

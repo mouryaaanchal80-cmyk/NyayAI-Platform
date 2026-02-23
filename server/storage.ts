@@ -47,9 +47,9 @@ export class DatabaseStorage implements IStorage {
       .limit(5);
 
     return {
-      commonTypes: commonTypes.map(t => ({ name: t.type || 'Unknown', value: Number(t.count) })),
+      commonTypes: commonTypes.map(t => ({ name: t.type || 'Unknown', count: Number(t.count) })),
       cityTrends: cityTrends.map(c => ({ city: c.city || 'Unknown', count: Number(c.count) })),
-      categories: categoryInsights.map(c => ({ category: c.category || 'Unknown', value: Number(c.count) })),
+      categoryInsights: categoryInsights.map(c => ({ category: c.category || 'Unknown', count: Number(c.count) })),
       totalComplaints: Number(totalComplaints[0].count),
       resolvedCases: Number(resolvedCases[0].count),
     };
