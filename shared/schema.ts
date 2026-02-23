@@ -17,3 +17,5 @@ export const insertComplaintSchema = createInsertSchema(complaints).omit({ id: t
 
 export type Complaint = typeof complaints.$inferSelect;
 export type InsertComplaint = z.infer<typeof insertComplaintSchema>;
+
+export * from "./models/chat";
